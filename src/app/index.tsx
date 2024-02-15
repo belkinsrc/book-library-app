@@ -1,4 +1,8 @@
+/* eslint-disable react-refresh/only-export-components */
 import { BookLibraryPage } from '@/pages/book-library';
+
+import { withProviders } from '@/app/providers';
+
 import './index.scss';
 
 const App = () => {
@@ -9,4 +13,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default withProviders(App);
