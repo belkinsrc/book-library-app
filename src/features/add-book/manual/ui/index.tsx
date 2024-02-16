@@ -6,7 +6,11 @@ import { Button } from '@/shared/ui';
 import { addBook } from '@/entities/book';
 import styles from './styles.module.scss';
 
-const AddBook: React.FC = () => {
+interface AddBookProps {
+  withRandom: React.ReactNode;
+}
+
+const AddBook: React.FC<AddBookProps> = ({ withRandom }) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
 
@@ -56,6 +60,7 @@ const AddBook: React.FC = () => {
         />
       </div>
       <Button type="submit">Add Book</Button>
+      {withRandom}
     </form>
   );
 };
