@@ -11,10 +11,11 @@ const bookModel = createSlice({
   reducers: {
     addBook: (state, action) => [...state, action.payload],
     deleteBook: (state, action) => state.filter((book) => book.id !== action.payload),
-    toggleFavoriteBook: (state, action) =>
-      state.map((book) =>
+    toggleFavoriteBook: (state, action) => {
+      return state.map((book) =>
         book?.id !== action.payload ? book : { ...book, isFavorite: !book?.isFavorite },
-      ),
+      );
+    },
   },
 });
 
