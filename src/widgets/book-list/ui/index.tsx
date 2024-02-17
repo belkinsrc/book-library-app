@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { BookType } from '@/shared/api';
 import { Book } from '@/entities/book';
 import { DeleteBook } from '@/features/delete-book';
+// import { ToggleFavoriteBook } from '@/features/toggle-favorite-book';
 import styles from './styles.module.scss';
 
 interface StateType {
@@ -24,6 +25,9 @@ const BookList: React.FC = () => {
               title={book.title}
               author={book.author}
               sequence={++i}
+              // ToggleFavoriteBook={
+              //   <ToggleFavoriteBook bookId={book.id} isFavorite={book.isFavorite} />
+              // }
               DeleteBook={<DeleteBook bookId={book.id} />}
             />
           ))}

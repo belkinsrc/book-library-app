@@ -5,6 +5,7 @@ interface BookProps {
   author: string;
   sequence: number;
   DeleteBook: React.ReactNode;
+  // ToggleFavoriteBook: React.ReactNode;
 }
 
 const Book: React.FC<BookProps> = ({ title, author, sequence, DeleteBook }) => {
@@ -13,7 +14,10 @@ const Book: React.FC<BookProps> = ({ title, author, sequence, DeleteBook }) => {
       <div className={styles.bookInfo}>
         {sequence}. {title} by <strong>{author}</strong>
       </div>
-      <div className={styles.bookActions}>{DeleteBook}</div>
+      <div className={styles.bookActions}>
+        {/* {ToggleFavoriteBook} */}
+        {DeleteBook}
+      </div>
     </li>
   );
 };
