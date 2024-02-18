@@ -4,7 +4,7 @@ import { Filter } from '@/widgets/filter';
 import { BookList } from '@/widgets/book-list';
 import styles from './styles.module.scss';
 
-const BookLibraryPage = () => {
+const BookLibraryPage: React.FC = () => {
   return (
     <>
       <Header />
@@ -21,4 +21,4 @@ const BookLibraryPage = () => {
   );
 };
 
-export { BookLibraryPage };
+export default BookLibraryPage;
