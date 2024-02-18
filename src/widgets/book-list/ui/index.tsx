@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
-import { Book } from '@/entities/book';
+import { Book, selectBooks } from '@/entities/book';
 import { DeleteBook } from '@/features/delete-book';
 import { ToggleFavoriteBook } from '@/features/toggle-favorite-book';
-import { RootState } from '@/app/store';
 import styles from './styles.module.scss';
 
 const BookList: React.FC = () => {
-  const books = useSelector((state: RootState) => state.books);
+  const books = useSelector(selectBooks);
 
   return (
     <div className={`block ${styles.bookList}`}>

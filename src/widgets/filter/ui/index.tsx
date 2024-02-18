@@ -1,5 +1,5 @@
-import { useDispatch } from 'react-redux';
-import { setTitleFilter } from '@/widgets/filter';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTitleFilter, selectTitleFitler } from '@/widgets/filter';
 import styles from './styles.module.scss';
 
 const Filter: React.FC = () => {
@@ -9,10 +9,17 @@ const Filter: React.FC = () => {
     dispatch(setTitleFilter(e.target.value));
   }
 
+  const titleFilter = useSelector(selectTitleFitler);
+
   return (
     <div className={`block ${styles.filter}`}>
       <div className={styles.filterGroup}>
-        <input type="text" placeholder="Filter by title..." onChange={handleChangeInput} />
+        <input
+          type="text"
+          placeholder="Filter by title..."
+          value={titleFilter}
+          onChange={handleChangeInput}
+        />
       </div>
     </div>
   );
