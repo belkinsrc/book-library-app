@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/app/store';
 
 type FilterState = {
@@ -13,11 +13,16 @@ const filterModel = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setTitleFilter: (state, action) => (state.title = action.payload),
+    setTitleFilter: (state, action: PayloadAction<string>) => {
+      state.title = action.payload;
+    },
+    resetFilters: () => {
+      return initialState;
+    },
   },
 });
 
-export const { setTitleFilter } = filterModel.actions;
+export const { setTitleFilter, resetFilters } = filterModel.actions;
 
 export const selectTitleFitler = (state: RootState) => state.filter.title;
 
