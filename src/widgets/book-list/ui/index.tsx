@@ -2,15 +2,17 @@ import { useSelector } from 'react-redux';
 import { Book, selectBooks } from '@/entities/book';
 import { DeleteBook } from '@/features/delete-book';
 import { ToggleFavoriteBook } from '@/features/toggle-favorite-book';
-import { selectTitleFitler } from '@/widgets/filter';
+import { selectFilter } from '@/widgets/filter';
 import styles from './styles.module.scss';
 
 const BookList: React.FC = () => {
   const books = useSelector(selectBooks);
-  const titleFilter = useSelector(selectTitleFitler);
+  const filter = useSelector(selectFilter);
 
   const filteredBooks = books.filter((book) => {
-    return book.title.toLowerCase().includes(titleFilter.toLowerCase());
+    const titleMatches = book.title.toLowerCase().includes(filter.title.toLowerCase());
+    const authorMatches = book.author.toLowerCase().includes(filter.author.toLowerCase());
+    return titleMatches && authorMatches;
   });
 
   return (

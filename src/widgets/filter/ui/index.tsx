@@ -1,16 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ResetFilters } from '@/features/reset-filters';
-import { setTitleFilter, selectTitleFitler } from '@/widgets/filter';
+import {
+  setTitleFilter,
+  setAuthorFilter,
+  selectTitleFitler,
+  selectAuthorFilter,
+} from '@/widgets/filter';
 import styles from './styles.module.scss';
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch();
+  const titleFilter = useSelector(selectTitleFitler);
+  const authorFilter = useSelector(selectAuthorFilter);
 
-  function handleChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(setTitleFilter(e.target.value));
   }
 
-  const titleFilter = useSelector(selectTitleFitler);
+  function handleChangeAuthor(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(setAuthorFilter(e.target.value));
+  }
 
   return (
     <div className={`block ${styles.filter}`}>
@@ -20,7 +29,15 @@ const Filter: React.FC = () => {
             type="text"
             placeholder="Filter by title..."
             value={titleFilter}
-            onChange={handleChangeInput}
+            onChange={handleChangeTitle}
+          />
+        </div>
+        <div className={styles.filterGroup}>
+          <input
+            type="text"
+            placeholder="Filter by author..."
+            value={authorFilter}
+            onChange={handleChangeAuthor}
           />
         </div>
         <ResetFilters />
