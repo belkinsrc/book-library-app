@@ -3,15 +3,19 @@ import { ResetFilters } from '@/features/reset-filters';
 import {
   setTitleFilter,
   setAuthorFilter,
-  selectTitleFitler,
+  setOnlyFavoriteFilter,
+  selectTitleFilter,
   selectAuthorFilter,
+  selectOnlyFavoriteFilter,
 } from '@/widgets/filter';
 import styles from './styles.module.scss';
 
 const Filter: React.FC = () => {
   const dispatch = useDispatch();
-  const titleFilter = useSelector(selectTitleFitler);
+
+  const titleFilter = useSelector(selectTitleFilter);
   const authorFilter = useSelector(selectAuthorFilter);
+  const onlyFavoriteFilter = useSelector(selectOnlyFavoriteFilter);
 
   function handleChangeTitle(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(setTitleFilter(e.target.value));
@@ -19,6 +23,10 @@ const Filter: React.FC = () => {
 
   function handleChangeAuthor(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(setAuthorFilter(e.target.value));
+  }
+
+  function handleToggleFavorite() {
+    dispatch(setOnlyFavoriteFilter());
   }
 
   return (
@@ -39,6 +47,12 @@ const Filter: React.FC = () => {
             value={authorFilter}
             onChange={handleChangeAuthor}
           />
+        </div>
+        <div className={styles.filterGroup}>
+          <label>
+            Only Favorite
+            <input type="checkbox" checked={onlyFavoriteFilter} onChange={handleToggleFavorite} />
+          </label>
         </div>
         <ResetFilters />
       </div>

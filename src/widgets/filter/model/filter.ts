@@ -4,11 +4,13 @@ import { RootState } from '@/app/store';
 type FilterState = {
   title: string;
   author: string;
+  isFavorite: boolean;
 };
 
 const initialState: FilterState = {
   title: '',
   author: '',
+  isFavorite: false,
 };
 
 const filterModel = createSlice({
@@ -21,16 +23,20 @@ const filterModel = createSlice({
     setAuthorFilter: (state, action) => {
       state.author = action.payload;
     },
+    setOnlyFavoriteFilter: (state) => {
+      state.isFavorite = !state.isFavorite;
+    },
     resetFilters: () => {
       return initialState;
     },
   },
 });
 
-export const { setTitleFilter, setAuthorFilter, resetFilters } = filterModel.actions;
+export const { setTitleFilter, setAuthorFilter, setOnlyFavoriteFilter, resetFilters } =
+  filterModel.actions;
 
-export const selectTitleFitler = (state: RootState) => state.filter.title;
+export const selectTitleFilter = (state: RootState) => state.filter.title;
 export const selectAuthorFilter = (state: RootState) => state.filter.author;
-export const selectFilter = (state: RootState) => state.filter;
+export const selectOnlyFavoriteFilter = (state: RootState) => state.filter.isFavorite;
 
 export { filterModel };
